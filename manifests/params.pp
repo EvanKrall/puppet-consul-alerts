@@ -9,6 +9,7 @@ class consul_alerts::params {
   $package_name      = 'consul-alerts'
   $package_ensure    = 'latest'
   $version = '0.3.2'
+  $os = downcase($::kernel)
 
   case $::architecture {
     'x86_64', 'amd64': { $arch = 'amd64' }
