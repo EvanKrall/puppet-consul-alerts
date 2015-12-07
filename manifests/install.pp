@@ -11,9 +11,9 @@ class consul_alerts::install {
     } ->
     staging::extract { 'consul_alerts.tar':
       target  => $consul_alerts::bin_dir,
-      creates => "${consul_alerts::bin_dir}/consul_alerts",
+      creates => "${consul_alerts::bin_dir}/consul-alerts",
     } ->
-    file { "${consul_alerts::bin_dir}/consul_alerts":
+    file { "${consul_alerts::bin_dir}/consul-alerts":
       owner => 'root',
       group => 0, # 0 instead of root because OS X uses "wheel".
       mode  => '0555',
