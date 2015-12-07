@@ -6,5 +6,6 @@
 class consul_alerts::service {
   initscript { 'consul-alerts':
     launchd_name => 'ph.acele.consul-alerts.daemon',
+    command      => ["${consul_alerts::bin_dir}/consul-alerts", 'start', '--watch-events', '--watch-checks'],
   }
 }
