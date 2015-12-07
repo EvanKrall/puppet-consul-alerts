@@ -6,13 +6,10 @@ class consul_alerts::install {
 
   if $consul_alerts::install_method == 'url' {
 
-    if $::operatingsystem != 'darwin' {
-      ensure_packages(['unzip'])
-    }
-    staging::file { 'consul_alerts.zip':
+    staging::file { 'consul_alerts.tar':
       source => $consul_alerts::download_url
     } ->
-    staging::extract { 'consul_alerts.zip':
+    staging::extract { 'consul_alerts.tar':
       target  => $consul_alerts::bin_dir,
       creates => "${consul_alerts::bin_dir}/consul_alerts",
     } ->
