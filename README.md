@@ -1,5 +1,5 @@
 # puppet-consul-alerts
-Puppet module for managing Hashicorp's [consul-alerts](https://github.com/AcalephStorage/consul-alerts)
+Puppet module for managing [consul-alerts](https://github.com/AcalephStorage/consul-alerts)
 
 ##Installation
 
