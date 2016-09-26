@@ -50,7 +50,10 @@ class consul_alerts (
 
   if ($manage_service) {
     Class['consul_alerts::install'] ->
-    class { 'consul_alerts::service': } ->
+    class { 'consul_alerts::service':
+      service_enable => $service_enable,
+      service_ensure => $service_ensure,
+    } ->
     Anchor['consul_alerts_last']
   }
 }
