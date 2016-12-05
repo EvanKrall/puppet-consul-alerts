@@ -10,8 +10,8 @@ class consul_alerts::service(
   $consul_acl_token,
 ) {
   initscript { 'consul-alerts':
-    launchd_name   => 'ph.acele.consul-alerts.daemon',
-    command        => [
+    launchd_name        => 'ph.acele.consul-alerts.daemon',
+    command             => [
       "${consul_alerts::bin_dir}/consul-alerts",
       'start',
       '--watch-events',
@@ -19,7 +19,8 @@ class consul_alerts::service(
       "--consul-dc=${consul_datacenter}",
       "--consul-acl-token=${consul_acl_token}",
     ],
-    service_ensure => $service_ensure,
-    service_enable => $service_enable,
+    service_ensure      => $service_ensure,
+    service_enable      => $service_enable,
+    source_default_file => true,
   }
 }
