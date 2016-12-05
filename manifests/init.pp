@@ -21,6 +21,9 @@
 #   Extra arguments to be passed to the consul-alerts agent, as an array of
 #   strings. Will be shellquoted before being written to init scripts.
 #
+# [*consul_datacenter*]
+#   The name of the datacenter to monitor
+#
 class consul_alerts (
   $manage_user       = false,
   $user              = 'root',
@@ -38,6 +41,8 @@ class consul_alerts (
   $service_enable    = true,
   $service_ensure    = 'running',
   $manage_service    = true,
+  $consul_datacenter = 'dc1',
+  $consul_acl_token  = '',
 ) inherits consul_alerts::params {
 
   # with no arguments, we simply install consul-alerts.
@@ -51,8 +56,10 @@ class consul_alerts (
   if ($manage_service) {
     Class['consul_alerts::install'] ->
     class { 'consul_alerts::service':
-      service_enable => $service_enable,
-      service_ensure => $service_ensure,
+      service_enable    => $service_enable,
+      service_ensure    => $service_ensure,
+      consul_datacenter => $consul_datacenter,
+      consul_acl_token  => $consul_acl_token,
     } ->
     Anchor['consul_alerts_last']
   }
